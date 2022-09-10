@@ -20,7 +20,7 @@ export const ContactsList = () => {
   const filtredContacts = useMemo(() => {
     return (
       contacts?.filter(contact =>
-        contact?.name.toLowerCase().includes(filter.toLowerCase())
+        contact.name.toLowerCase().includes(filter.toLowerCase())
       ) ?? []
     );
   }, [filter, contacts]);
