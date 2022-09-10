@@ -1,27 +1,38 @@
-import { useSelector } from 'react-redux';
-import { useMemo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { useMemo, useEffect } from 'react';
+
 import { ContactItem } from 'components/ContactItem/ContactItem';
 import { List } from './ContactsList.styled';
-import { getFilter } from 'redux/contactsSlice';
-import { useGetContactsQuery } from 'redux/services';
+import contactsSelectors from 'redux/contacts-selectors';
+import contactsOperations from 'redux/contacts-operations';
 
 export const ContactsList = () => {
-  const filter = useSelector(getFilter);
-  const { data: contacts } = useGetContactsQuery();
+  const contacts = useSelector(contactsSelectors.getContacts);
+  console.log(contacts);
+  const filter = useSelector(contactsSelectors.getFilter);
 
-  const filtredContact = useMemo(() => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(contactsOperations.fetchContacts());
+  }, [dispatch]);
+
+  const filtredContacts = useMemo(() => {
     return (
       contacts?.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
+        contact?.name.toLowerCase().includes(filter.toLowerCase())
       ) ?? []
     );
   }, [filter, contacts]);
 
+  console.log(filtredContacts);
+
   return (
     <List>
-      {filtredContact.map(contact => (
-        <ContactItem key={contact.id} contact={contact} />
-      ))}
+      {filtredContacts &&
+        filtredContacts.map(contact => (
+          <ContactItem key={contact.id} contact={contact} />
+        ))}
     </List>
   );
 };
