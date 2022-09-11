@@ -37,30 +37,3 @@ export default function App() {
     </>
   );
 }
-// export default function App() {
-//   const { data: contacts, isFetching } = useGetContactsQuery();
-//   return (
-//     <>
-//       <GlobalStyle />
-//       {isFetching && <Loader />}
-
-//       {!isFetching && (
-//         <>
-//           <h1>Phonebook</h1>
-//           <Section>
-//             <Container>
-//               <ContactForm />
-//             </Container>
-//           </Section>
-//           <Section title="Contacts">
-//             <Container>
-//               <Filter />
-//               {contacts && <ContactsList />}
-//             </Container>
-//           </Section>
-//         </>
-//       )}
-//       <ToastContainer position="top-center" autoClose={1500} />
-//     </>
-//   );
-// }
