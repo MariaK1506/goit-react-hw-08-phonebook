@@ -32,4 +32,5 @@ const contactsOperations = {
   addContact,
   deleteContact,
 };
+
 export default contactsOperations;

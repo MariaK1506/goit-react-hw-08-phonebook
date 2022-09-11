@@ -17,7 +17,7 @@ export const ContactsList = () => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  const filtredContacts = useMemo(() => {
+  const filteredContacts = useMemo(() => {
     return (
       contacts?.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -25,14 +25,24 @@ export const ContactsList = () => {
     );
   }, [filter, contacts]);
 
-  console.log(filtredContacts);
+  // console.log(filtredContacts);
+
+  // return (
+  //   <List>
+  //     {filteredContacts &&
+  //       filteredContacts.map(contact => (
+  //         <ContactItem key={contact.id} contact={contact} />
+  //       ))}
+  //   </List>
+  // );
 
   return (
-    <List>
-      {filtredContacts &&
-        filtredContacts.map(contact => (
+    filteredContacts && (
+      <List>
+        {filteredContacts.map(contact => (
           <ContactItem key={contact.id} contact={contact} />
         ))}
-    </List>
+      </List>
+    )
   );
 };

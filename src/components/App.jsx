@@ -1,14 +1,10 @@
 import { GlobalStyle } from './GlobalStyle';
 import { ToastContainer } from 'react-toastify';
 import { Routes, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import { lazy } from 'react';
-import { Container } from 'components/Container/Container';
-import { Section } from './Section/Section';
-import ContactForm from 'components/ContactForm/ContactForm';
-import { ContactsList } from './ContactsList/ContactsList';
-import { Filter } from './Filter/Filter';
-import { useGetContactsQuery } from 'redux/services';
-import Loader from 'components/Loader/Loader';
+import authOperations from '../redux/auth/auth-operations';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
 
 const HomePage = lazy(() => import('pages/HomePage'));
@@ -18,6 +14,11 @@ const LoginPage = lazy(() => import('pages/LoginPage'));
 const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 export default function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(authOperations.fetchCurrentUser());
+  }, [dispatch]);
+
   return (
     <>
       <GlobalStyle />
