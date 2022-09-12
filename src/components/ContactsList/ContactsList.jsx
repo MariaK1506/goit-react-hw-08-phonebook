@@ -8,7 +8,7 @@ import contactsOperations from 'redux/contacts-operations';
 
 export const ContactsList = () => {
   const contacts = useSelector(contactsSelectors.getContacts);
-  console.log(contacts);
+  // console.log(contacts);
   const filter = useSelector(contactsSelectors.getFilter);
 
   const dispatch = useDispatch();
@@ -17,7 +17,7 @@ export const ContactsList = () => {
     dispatch(contactsOperations.fetchContacts());
   }, [dispatch]);
 
-  const filteredContacts = useMemo(() => {
+  const filteredContact = useMemo(() => {
     return (
       contacts?.filter(contact =>
         contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -25,21 +25,10 @@ export const ContactsList = () => {
     );
   }, [filter, contacts]);
 
-  // console.log(filtredContacts);
-
-  // return (
-  //   <List>
-  //     {filteredContacts &&
-  //       filteredContacts.map(contact => (
-  //         <ContactItem key={contact.id} contact={contact} />
-  //       ))}
-  //   </List>
-  // );
-
   return (
-    filteredContacts && (
+    filteredContact && (
       <List>
-        {filteredContacts.map(contact => (
+        {filteredContact.map(contact => (
           <ContactItem key={contact.id} contact={contact} />
         ))}
       </List>

@@ -17,17 +17,15 @@ const contactsSlice = createSlice({
       state.items = [...state.items, action.payload];
     },
     [contactsOperations.deleteContact.fulfilled](state, action) {
-      state.items.filter(({ id }) => id !== action.payload);
+      return state.items.filter(({ id }) => id !== action.payload);
     },
   },
   reducers: {
     changeFilter(state, action) {
       return (state.filter = action.payload);
-      // console.log(state.filter);
     },
   },
 });
 
 export const { changeFilter } = contactsSlice.actions;
-
 export default contactsSlice.reducer;
