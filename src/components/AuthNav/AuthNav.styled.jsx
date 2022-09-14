@@ -5,16 +5,16 @@ export const StyledLink = styled(NavLink)`
   display: inline-block;
   text-decoration: none;
   padding: 12px;
-  font-weight: 500;
-  font-size: 18px;
-  color: black;
+  font-weight: 700;
+  font-size: 24px;
+  color: white;
 
   &.active {
-    color: orangered;
+    color: ${props => props.theme.colors.black};
   }
 
   :hover:not(.active),
   :focus:not(.active) {
-    color: orangered;
+    color: ${props => props.theme.colors.black};
   }
 `;

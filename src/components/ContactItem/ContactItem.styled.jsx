@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Button } from '@mui/material';
 
 export const Item = styled.li`
   display: flex;
@@ -10,8 +11,8 @@ export const Item = styled.li`
   border-radius: 4px;
   text-align: center;
 
-  margin-left: 15px;
   margin-top: 15px;
+  margin-right: 15px;
 
   transition: all 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
@@ -33,6 +34,7 @@ export const Item = styled.li`
 export const Name = styled.p`
   color: ${props => props.theme.colors.darkGray};
   font-weight: 500;
+  font-size: 20px;
 `;
 
 export const Number = styled.p`
@@ -51,7 +53,7 @@ export const Number = styled.p`
   }
 `;
 
-export const Button = styled.button`
+export const StyledButton = styled(Button)`
   min-width: 50px;
   height: 30px;
   border: 0px solid transparent;

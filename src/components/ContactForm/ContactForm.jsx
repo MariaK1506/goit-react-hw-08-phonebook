@@ -1,16 +1,12 @@
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Form, Label, Input, Button } from './ContactForm.styled';
 import contactsSelectors from 'redux/contacts-selectors';
 import contactsOperations from 'redux/contacts-operations';
+import { Box, TextField, Button } from '@mui/material';
 
 export default function ContactForm() {
-  const nameInputId = useMemo(() => nanoid(), []);
-  const numberInputId = useMemo(() => nanoid(), []);
-
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
@@ -50,41 +46,59 @@ export default function ContactForm() {
       ? toast.error(`${name} is already in contacts`)
       : dispatch(contactsOperations.addContact(newContact));
 
-    toast.success('Contact is added');
     formReset();
   };
 
   return (
     <>
-      <Form onSubmit={handleSubmit}>
-        <Label htmlFor={nameInputId}>
-          Name
-          <Input
-            value={name}
-            onChange={handleInputChange}
-            id={nameInputId}
-            type="text"
-            name="name"
-            // pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            // title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </Label>
-        <Label htmlFor={numberInputId}>
-          Number
-          <Input
-            value={number}
-            onChange={handleInputChange}
-            id={numberInputId}
-            type="tel"
-            name="number"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </Label>
-        <Button type="submit">Add contact</Button>
-      </Form>
+      <Box
+        component="form"
+        sx={{
+          width: '400px',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+        }}
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          label="Name"
+          variant="outlined"
+          sx={{
+            width: '100%',
+          }}
+          value={name}
+          onChange={handleInputChange}
+          type="text"
+          name="name"
+          required
+        />
+
+        <TextField
+          label="Number"
+          variant="outlined"
+          id="outlined-number"
+          sx={{
+            marginTop: '10px',
+            width: '100%',
+          }}
+          value={number}
+          onChange={handleInputChange}
+          type="tel"
+          name="number"
+          placeholder="000-00-00"
+          required
+        />
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            marginTop: '10px',
+          }}
+          type="submit"
+        >
+          Add contact
+        </Button>
+      </Box>
     </>
   );
 }

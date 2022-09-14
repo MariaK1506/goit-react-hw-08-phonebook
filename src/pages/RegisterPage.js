@@ -1,13 +1,14 @@
 import { useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
 import authOperations from 'redux/auth/auth-operations';
 import { Container } from 'components/Container/Container';
 
+import { Box, TextField, Button, Typography } from '@mui/material';
+
 export default function RegisterPage() {
-  const nameInputId = useMemo(() => nanoid(), []);
-  const emailInputId = useMemo(() => nanoid(), []);
-  const passwordInputId = useMemo(() => nanoid(), []);
+  // const nameInputId = useMemo(() => nanoid(), []);
+  // const emailInputId = useMemo(() => nanoid(), []);
+  // const passwordInputId = useMemo(() => nanoid(), []);
 
   const dispatch = useDispatch();
   const [name, setName] = useState('');
@@ -37,49 +38,78 @@ export default function RegisterPage() {
 
   return (
     <Container>
-      <h1>Registration form</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor={nameInputId}>
-          Name
-          <input
-            value={name}
-            onChange={handleChange}
-            id={nameInputId}
-            type="text"
-            name="name"
-            pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-            required
-          />
-        </label>
-        <label htmlFor={emailInputId}>
-          E-mail
-          <input
-            value={email}
-            onChange={handleChange}
-            id={emailInputId}
-            type="email"
-            name="email"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
-        <label htmlFor={passwordInputId}>
-          Password
-          <input
-            value={password}
-            onChange={handleChange}
-            id={passwordInputId}
-            type="password"
-            name="password"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
-        <button type="submit">Register</button>
-      </form>
+      <Typography
+        variant="h3"
+        gutterBottom
+        sx={{
+          textAlign: 'center',
+          marginTop: '20px',
+        }}
+      >
+        Registration form
+      </Typography>
+      <Box
+        component="form"
+        sx={{
+          width: '400px',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+        }}
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          label="Name"
+          variant="outlined"
+          sx={{
+            marginTop: '10px',
+            width: '100%',
+          }}
+          value={name}
+          onChange={handleChange}
+          type="text"
+          name="name"
+          required
+        />
+
+        <TextField
+          label="Email"
+          variant="outlined"
+          sx={{
+            marginTop: '10px',
+            width: '100%',
+          }}
+          value={email}
+          onChange={handleChange}
+          type="email"
+          name="email"
+          required
+        />
+
+        <TextField
+          label="Password"
+          variant="outlined"
+          sx={{
+            marginTop: '10px',
+            width: '100%',
+          }}
+          value={password}
+          onChange={handleChange}
+          type="password"
+          name="password"
+          required
+        />
+
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            marginTop: '10px',
+          }}
+          type="submit"
+        >
+          Register
+        </Button>
+      </Box>
     </Container>
   );
 }

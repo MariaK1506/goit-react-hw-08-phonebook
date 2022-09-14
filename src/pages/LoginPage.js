@@ -1,12 +1,13 @@
 import { useState, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
+
 import authOperations from 'redux/auth/auth-operations';
 import { Container } from 'components/Container/Container';
+import { Box, TextField, Button, Typography } from '@mui/material';
 
-export default function LoginPag() {
-  const emailInputId = useMemo(() => nanoid(), []);
-  const passwordInputId = useMemo(() => nanoid(), []);
+export default function LoginPage() {
+  // const emailInputId = useMemo(() => nanoid(), []);
+  // const passwordInputId = useMemo(() => nanoid(), []);
 
   const dispatch = useDispatch();
 
@@ -34,36 +35,65 @@ export default function LoginPag() {
 
   return (
     <Container>
-      <h1>Login form</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor={emailInputId}>
-          E-mail
-          <input
-            value={email}
-            onChange={handleChange}
-            id={emailInputId}
-            type="email"
-            name="email"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
-        <label htmlFor={passwordInputId}>
-          Password
-          <input
-            value={password}
-            onChange={handleChange}
-            id={passwordInputId}
-            type="password"
-            name="password"
-            // pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            // title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-            required
-          />
-        </label>
-        <button type="submit">Sign in</button>
-      </form>
+      <Typography
+        variant="h3"
+        gutterBottom
+        sx={{
+          textAlign: 'center',
+          marginTop: '20px',
+          width: '100%',
+        }}
+      >
+        Login form
+      </Typography>
+      <Box
+        component="form"
+        sx={{
+          width: '400px',
+          marginRight: 'auto',
+          marginLeft: 'auto',
+        }}
+        onSubmit={handleSubmit}
+      >
+        <TextField
+          label="Email"
+          variant="outlined"
+          sx={{
+            marginTop: '10px',
+            width: '100%',
+          }}
+          value={email}
+          onChange={handleChange}
+          type="email"
+          name="email"
+          required
+        />
+
+        <TextField
+          label="Password"
+          variant="outlined"
+          sx={{
+            marginTop: '10px',
+            width: '100%',
+          }}
+          value={password}
+          onChange={handleChange}
+          type="password"
+          name="password"
+          required
+        />
+
+        <Button
+          variant="contained"
+          size="large"
+          sx={{
+            marginTop: '10px',
+          }}
+          type="submit"
+        >
+          Sign in
+        </Button>
+      </Box>
     </Container>
   );
 }

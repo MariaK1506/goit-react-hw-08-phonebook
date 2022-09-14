@@ -7,6 +7,7 @@ import { lazy } from 'react';
 import authOperations from '../redux/auth/auth-operations';
 import authSelectors from 'redux/auth/auth-selectors';
 import SharedLayout from 'components/SharedLayout/SharedLayout';
+import { Container } from 'components/Container/Container';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 
@@ -27,10 +28,10 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    !isFetchingCurrentUser && (
-      <>
-        <GlobalStyle />
-        {/* <Container> */}
+    // !isFetchingCurrentUser && (
+    <>
+      <GlobalStyle />
+      <Container>
         <Routes>
           <Route path="/" element={<SharedLayout />}>
             <Route index element={<HomePage />} />
@@ -63,9 +64,9 @@ export default function App() {
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-        {/* </Container> */}
-        <ToastContainer position="top-center" autoClose={3000} />
-      </>
-    )
+      </Container>
+      <ToastContainer position="top-center" autoClose={3000} />
+    </>
   );
+  // );
 }

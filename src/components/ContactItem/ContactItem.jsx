@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
-import { Item, Name, Number, Button } from './ContactItem.styled';
+import { Item, Name, Number, StyledButton } from './ContactItem.styled';
 import { useDispatch } from 'react-redux';
 import contactsOperations from 'redux/contacts-operations';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 export const ContactItem = ({ contact }) => {
   const { id, name, number } = contact;
@@ -13,12 +14,16 @@ export const ContactItem = ({ contact }) => {
 
   return (
     <Item key={id}>
+      <AccountCircleIcon fontSize="large" color="primary" />
       <Name>{name}:</Name>
       <Number>{number}</Number>
-      <Button onClick={() => removeContact(id)}>
-        {/* <Button onClick={() => dispatch(contactsOperations.deleteContact(id))}> */}
+      <StyledButton
+        variant="contained"
+        size="small"
+        onClick={() => removeContact(id)}
+      >
         Delete
-      </Button>
+      </StyledButton>
     </Item>
   );
 };

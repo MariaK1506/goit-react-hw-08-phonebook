@@ -8,15 +8,15 @@ export const StyledLink = styled(Link)`
   padding: 12px;
   font-weight: 500;
   font-size: 18px;
-  color: black;
+  color: ${props => props.theme.colors.black};
 
   &.active {
-    color: orangered;
+    color: ${props => props.theme.colors.accent};
   }
 
   :hover:not(.active),
   :focus:not(.active) {
-    color: orangered;
+    color: ${props => props.theme.colors.accent};
   }
 `;
 

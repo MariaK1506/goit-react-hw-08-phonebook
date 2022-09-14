@@ -3,17 +3,22 @@ import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthNav from 'components/AuthNav/AuthNav';
 import authSelectors from 'redux/auth/auth-selectors';
-import { HeaderBox } from './Header.styled';
+// import { HeaderBox } from './Header.styled';
+import { AppBar, Toolbar } from '@mui/material';
 
 export default function Header() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  // console.log(isLoggedIn);
+
   return (
-    <HeaderBox>
-      <Navigation />
-      {/* <UserMenu />
-      <AuthNav /> */}
-      {isLoggedIn ? <UserMenu /> : <AuthNav />}
-    </HeaderBox>
+    <AppBar position="static">
+      <Toolbar
+        sx={{
+          justifyContent: 'space-between',
+        }}
+      >
+        <Navigation />
+        {isLoggedIn ? <UserMenu /> : <AuthNav />}
+      </Toolbar>
+    </AppBar>
   );
 }

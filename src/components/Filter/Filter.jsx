@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { nanoid } from 'nanoid';
-import { Label, Input } from './Filter.styled';
+// import { Label, Input } from './Filter.styled';
 import contactsSelectors from 'redux/contacts-selectors';
-import changeFilter from 'redux/contactsSlice';
+import { changeFilter } from 'redux/contactsSlice';
+import {TextField} from '@mui/material';
 
 export const Filter = () => {
-  const filterInputId = nanoid();
-
+  
   const dispatch = useDispatch();
   const filterSearch = useSelector(contactsSelectors.getFilter);
 
@@ -15,16 +14,19 @@ export const Filter = () => {
   };
 
   return (
-    <Label htmlFor={filterInputId}>
-      Find contacts by name
-      <Input
-        value={filterSearch}
-        onChange={changeFilterSearch}
-        id={filterInputId}
-        type="text"
-        name="filter"
-        required
-      />
-    </Label>
+    <TextField
+      label="Find contacts by name"
+      variant="outlined"
+      sx={{
+        marginTop: '20px',
+        marginBottom: '10px',
+        width: '695px',
+      }}
+      value={filterSearch}
+      onChange={changeFilterSearch}
+      type="text"
+      name="filter"
+      required
+    />
   );
 };
