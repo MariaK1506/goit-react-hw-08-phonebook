@@ -3,7 +3,6 @@ import Navigation from 'components/Navigation/Navigation';
 import UserMenu from 'components/UserMenu/UserMenu';
 import AuthNav from 'components/AuthNav/AuthNav';
 import authSelectors from 'redux/auth/auth-selectors';
-// import { HeaderBox } from './Header.styled';
 import { AppBar, Toolbar } from '@mui/material';
 
 export default function Header() {

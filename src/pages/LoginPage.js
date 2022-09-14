@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState} from 'react';
 import { useDispatch } from 'react-redux';
 
 import authOperations from 'redux/auth/auth-operations';
@@ -6,9 +6,7 @@ import { Container } from 'components/Container/Container';
 import { Box, TextField, Button, Typography } from '@mui/material';
 
 export default function LoginPage() {
-  // const emailInputId = useMemo(() => nanoid(), []);
-  // const passwordInputId = useMemo(() => nanoid(), []);
-
+  
   const dispatch = useDispatch();
 
   const [email, setEmail] = useState('');

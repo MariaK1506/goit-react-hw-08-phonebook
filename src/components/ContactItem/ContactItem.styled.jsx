@@ -59,7 +59,7 @@ export const StyledButton = styled(Button)`
   border: 0px solid transparent;
   border-radius: 4px;
 
-  color: #fff;
+  color: ${props => props.theme.colors.white};
   background-color: ${props => props.theme.colors.blue};
 
   box-shadow: 0px 4px 4px rgb(0 0 0 / 15%);

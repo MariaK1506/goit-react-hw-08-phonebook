@@ -15,7 +15,6 @@ function UserMenu() {
         <Typography
           variant="h6"
           component="span"
-          // gutterBottom
           sx={{
             color: '#feed00',
             marginLeft: '10px',
