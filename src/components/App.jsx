@@ -19,16 +19,12 @@ const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
 
 export default function App() {
   const dispatch = useDispatch();
-  const isFetchingCurrentUser = useSelector(
-    authSelectors.getIsFetchingCurrentUser
-  );
 
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
 
   return (
-    // !isFetchingCurrentUser && (
     <>
       <GlobalStyle />
       <Container>
@@ -68,5 +64,4 @@ export default function App() {
       <ToastContainer position="top-center" autoClose={3000} />
     </>
   );
-  // );
 }
