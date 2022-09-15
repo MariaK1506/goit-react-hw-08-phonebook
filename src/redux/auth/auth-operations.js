@@ -19,7 +19,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
-    toast.error('Invalid email or password. Try again.');
+    throw new Error();
   }
 });
 
@@ -46,7 +46,9 @@ const fetchCurrentUser = createAsyncThunk(
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
-    if (persistedToken === null) {
+    console.log(persistedToken);
+
+    if (!persistedToken) {
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);

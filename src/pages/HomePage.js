@@ -7,7 +7,6 @@ import { Typography } from '@mui/material';
 
 export default function HomePage() {
   const isLoggedIn = useSelector(authSelectors.getIsLoggedIn);
-  console.log(isLoggedIn);
 
   return (
     <>
