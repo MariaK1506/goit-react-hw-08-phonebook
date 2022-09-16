@@ -19,6 +19,7 @@ const register = createAsyncThunk('auth/register', async credentials => {
     token.set(data.token);
     return data;
   } catch (error) {
+    toast.error('Email is already used.');
     throw new Error();
   }
 });
@@ -30,6 +31,7 @@ const logIn = createAsyncThunk('auth/login', async credentials => {
     return data;
   } catch (error) {
     toast.error('Wrong login or password. Try again.');
+    throw new Error();
   }
 });
 
@@ -37,7 +39,9 @@ const logOut = createAsyncThunk('auth/logout', async () => {
   try {
     await axios.post('/users/logout');
     token.unset();
-  } catch (error) {}
+  } catch (error) {
+    throw new Error();
+  }
 });
 
 const fetchCurrentUser = createAsyncThunk(
@@ -48,14 +52,16 @@ const fetchCurrentUser = createAsyncThunk(
 
     console.log(persistedToken);
 
-    if (!persistedToken) {
+    if (persistedToken === null) {
       return thunkAPI.rejectWithValue();
     }
     token.set(persistedToken);
     try {
       const { data } = await axios.get('/users/current');
       return data;
-    } catch (error) {}
+    } catch (error) {
+      throw new Error();
+    }
   }
 );
 
